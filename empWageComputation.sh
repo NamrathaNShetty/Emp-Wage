@@ -1,13 +1,19 @@
-#!/bin/bash -x 
+#!/bin/bash -x
 
-empCheck=$((RANDOM%2))
-isPresent=1
 
-if [[ $empCheck -eq $isPresent ]]
+isPartTime=1;
+isFullTime=2;
+empRatePerHr=20;
+empcheck=$((RANDOM%3))
+
+if [[ $isFullTime -eq $empCheck ]]
 then
-   empRatePerHr=20
-   empHrs=8
-   wage=$(($empRatePerHr*$empHrs))
+	empHrs=8;
+elif [[ $isPartTime -eq $empCheck ]]
+then
+	empHrs=4;
 else
-   wage=0
+	empHrs=0;
 fi
+
+salary=$(($empHrs*$empRatePerHr))
