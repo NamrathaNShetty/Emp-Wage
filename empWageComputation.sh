@@ -5,7 +5,9 @@ isPresent=1
 
 if [[ $empCheck -eq $isPresent ]]
 then
-	echo "Emplyoee is Present"
+   empRatePerHr=20
+   empHrs=8
+   wage=$(($empRatePerHr*$empHrs))
 else
-	echo "Employee is Absent"
+   wage=0
 fi
