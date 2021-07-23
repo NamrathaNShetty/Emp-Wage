@@ -19,11 +19,16 @@ function getworkinghrs() {
 				;;
         esac
 }
-while [[ $totalworkingHrs -lt $max_Hrs_Mon &&
-	 $totalworkingdays -lt $numworkingdays ]]
+function calDailywage() { 
+ local empHrs=$1;
+ wage=$(($empHrs*$emprateperHr))
+}
+while [[ $totalworkingHrs -lt $max_Hrs_Mon && $totalworkingdays -lt $numworkingdays ]]
 do
   ((totalworkingdays++))
 	empHrs="$( getworkinghrs $((RANDOM%3)) )"
-	totalworkingHrs=$(( totalworkingHrs * empHrs ))
+	totalworkingHrs=$(( $totalworkingHrs * $empHrs ))
+	empwage[$totalworkingdays]+"$( calDailywage $empHrs )"
 done
-totalSalary=$(( totalworkingHrs * emprateperHr ))
+totalSalary=$(( calDailywage $totalworkingHrs ))
+echo "Daily wage" ${empwage[@]}
